@@ -42,7 +42,7 @@ export default function LinkFinder() {
       
       setResults(opportunities);
       setScanned(true);
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
