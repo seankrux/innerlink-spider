@@ -87,10 +87,10 @@ export default function LinkFinder() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Input Section */}
-      <div className="bg-white rounded-xl shadow-lg border border-slate-100 p-6 mb-6">
+      <div className="bg-zinc-900/80 backdrop-blur-sm rounded-xl ring-1 ring-white/10 p-6 mb-6">
         <label
           htmlFor="site-url"
-          className="block text-sm font-medium text-slate-700 mb-2"
+          className="block text-sm font-medium text-zinc-300 mb-2"
         >
           Website URL
         </label>
@@ -102,13 +102,13 @@ export default function LinkFinder() {
             onChange={(e) => setUrl(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="https://example.com"
-            className="flex-1 p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow text-slate-900 placeholder:text-slate-400"
+            className="flex-1 p-3 bg-zinc-800/80 ring-1 ring-zinc-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none transition-all duration-200 text-zinc-50 placeholder:text-zinc-500"
             disabled={loading}
           />
           <button
             onClick={handleAnalyze}
             disabled={loading}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium whitespace-nowrap flex items-center gap-2"
+            className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-400 text-zinc-950 rounded-lg hover:from-cyan-400 hover:to-cyan-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30"
           >
             {loading && (
               <svg
@@ -136,18 +136,18 @@ export default function LinkFinder() {
         </div>
 
         {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+          <div className="mt-4 p-3 bg-red-500/10 ring-1 ring-red-500/20 rounded-lg text-red-400 text-sm">
             {error}
           </div>
         )}
       </div>
 
-      {/* Loading State */}
+      {/* Loading State — Skeleton */}
       {loading && (
-        <div className="bg-white rounded-xl shadow-lg border border-slate-100 p-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-full mb-4">
+        <div className="bg-zinc-900/80 backdrop-blur-sm rounded-xl ring-1 ring-white/10 p-10 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-500/10 ring-1 ring-cyan-500/20 rounded-full mb-4">
             <svg
-              className="w-8 h-8 text-blue-600 animate-spin"
+              className="w-8 h-8 text-cyan-400 animate-spin"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -166,19 +166,25 @@ export default function LinkFinder() {
               />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-slate-900 mb-1">
+          <h3 className="text-lg font-semibold text-zinc-50 mb-1">
             Analyzing your site...
           </h3>
-          <p className="text-slate-500 text-sm">
+          <p className="text-zinc-500 text-sm mb-6">
             Scanning pages and finding link opportunities
           </p>
+          {/* Skeleton rows */}
+          <div className="space-y-3 max-w-lg mx-auto">
+            <div className="skeleton h-4 w-full" />
+            <div className="skeleton h-4 w-4/5" />
+            <div className="skeleton h-4 w-3/5" />
+          </div>
         </div>
       )}
 
       {/* Demo Notice */}
       {scanned && !loading && (
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-          <p className="text-amber-800 text-sm">
+        <div className="bg-amber-500/10 ring-1 ring-amber-500/20 rounded-lg p-4 mb-6">
+          <p className="text-amber-300 text-sm">
             <strong>Demo Mode:</strong> Showing sample results to illustrate the
             tool. In production, this crawls your site and finds real internal
             linking gaps using content analysis.
@@ -188,19 +194,19 @@ export default function LinkFinder() {
 
       {/* Results Section */}
       {results.length > 0 && !loading && (
-        <div className="bg-white rounded-xl shadow-lg border border-slate-100 p-6">
+        <div className="bg-zinc-900/80 backdrop-blur-sm rounded-xl ring-1 ring-white/10 p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">
+              <h2 className="text-xl font-semibold text-zinc-50">
                 {results.length} Opportunities Found
               </h2>
-              <p className="text-slate-500 text-sm mt-0.5">
+              <p className="text-zinc-500 text-sm mt-0.5">
                 Pages that should link to each other
               </p>
             </div>
             <button
               onClick={handleExport}
-              className="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium flex items-center gap-2"
+              className="px-4 py-2 bg-zinc-800 text-zinc-50 rounded-lg hover:bg-zinc-700 ring-1 ring-white/10 hover:ring-white/20 transition-all duration-200 text-sm font-medium flex items-center gap-2"
             >
               <svg
                 className="w-4 h-4"
@@ -223,20 +229,20 @@ export default function LinkFinder() {
             {results.map((result, index) => (
               <div
                 key={`${result.sourceUrl}-${result.targetUrl}`}
-                className="border border-slate-200 rounded-lg p-4 hover:shadow-md hover:border-slate-300 transition-all"
+                className="ring-1 ring-zinc-800 rounded-lg p-4 hover:ring-zinc-700 hover:bg-zinc-800/50 transition-all duration-200"
               >
-                <div className="flex items-center gap-2 mb-3 text-xs text-slate-400">
-                  <span className="bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded">
+                <div className="flex items-center gap-2 mb-3 text-xs text-zinc-500">
+                  <span className="bg-zinc-800 text-zinc-400 font-medium px-2 py-0.5 rounded ring-1 ring-zinc-700">
                     #{index + 1}
                   </span>
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mb-3">
                   <div className="min-w-0">
-                    <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
                       Source Page
                     </span>
                     <p
-                      className="text-sm text-blue-600 truncate mt-0.5"
+                      className="text-sm text-cyan-400 truncate mt-0.5"
                       title={result.sourceUrl}
                     >
                       {result.sourceUrl}
@@ -244,11 +250,11 @@ export default function LinkFinder() {
                   </div>
                   <div className="min-w-0 flex items-start gap-2">
                     <div className="min-w-0 flex-1">
-                      <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                      <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
                         Target Page
                       </span>
                       <p
-                        className="text-sm text-blue-600 truncate mt-0.5"
+                        className="text-sm text-cyan-400 truncate mt-0.5"
                         title={result.targetUrl}
                       >
                         {result.targetUrl}
@@ -256,16 +262,16 @@ export default function LinkFinder() {
                     </div>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
                       Suggested Anchor
                     </span>
-                    <p className="text-sm font-semibold text-slate-900 mt-0.5">
+                    <p className="text-sm font-semibold text-zinc-50 mt-0.5">
                       &ldquo;{result.anchorText}&rdquo;
                     </p>
                   </div>
                 </div>
-                <div className="bg-slate-50 p-3 rounded-lg text-sm text-slate-600 leading-relaxed">
-                  <span className="font-medium text-slate-700">Context: </span>
+                <div className="bg-zinc-800/60 ring-1 ring-zinc-700/50 p-3 rounded-lg text-sm text-zinc-400 leading-relaxed">
+                  <span className="font-medium text-zinc-300">Context: </span>
                   {result.context}
                 </div>
               </div>
@@ -276,10 +282,10 @@ export default function LinkFinder() {
 
       {/* Empty State — before any scan */}
       {!scanned && !loading && results.length === 0 && (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+        <div className="bg-zinc-900/80 backdrop-blur-sm rounded-xl ring-1 ring-white/10 p-10 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-zinc-800 ring-1 ring-zinc-700 rounded-full mb-4">
             <svg
-              className="w-8 h-8 text-slate-400"
+              className="w-8 h-8 text-zinc-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -292,10 +298,10 @@ export default function LinkFinder() {
               />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-slate-900 mb-1">
+          <h3 className="text-lg font-semibold text-zinc-50 mb-1">
             Ready to analyze
           </h3>
-          <p className="text-slate-500 text-sm max-w-md mx-auto">
+          <p className="text-zinc-500 text-sm max-w-md mx-auto">
             Enter a website URL above and click &ldquo;Analyze Site&rdquo; to
             find internal pages that should link to each other.
           </p>
