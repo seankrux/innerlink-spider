@@ -73,7 +73,7 @@ export default function LinkFinder() {
       )
       .join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8" });
     const blobUrl = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = blobUrl;
@@ -94,7 +94,7 @@ export default function LinkFinder() {
         >
           Website URL
         </label>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             id="site-url"
             type="url"
@@ -195,7 +195,7 @@ export default function LinkFinder() {
       {/* Results Section */}
       {results.length > 0 && !loading && (
         <div className="bg-zinc-900/80 backdrop-blur-sm rounded-xl ring-1 ring-white/10 p-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <div>
               <h2 className="text-xl font-semibold text-zinc-50">
                 {results.length} Opportunities Found

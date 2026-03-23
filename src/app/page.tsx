@@ -1,11 +1,4 @@
-import { Metadata } from "next";
 import LinkFinder from "@/components/LinkFinder";
-
-export const metadata: Metadata = {
-  title: "Internal Link Finder — Discover SEO Linking Opportunities",
-  description:
-    "Analyze your website to find internal linking opportunities. Discover pages that should link to each other to boost SEO rankings.",
-};
 
 export default function Home() {
   return (

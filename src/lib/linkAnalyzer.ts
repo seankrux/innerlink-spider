@@ -11,11 +11,8 @@ export interface LinkOpportunity {
  * to find pages that mention keywords targeted by other pages.
  */
 export function analyzeLinks(baseUrl: string): LinkOpportunity[] {
-  // Normalize to get a clean base URL
-  let cleanBase = baseUrl.replace(/\/$/, "");
-  if (!cleanBase.startsWith("http://") && !cleanBase.startsWith("https://")) {
-    cleanBase = "https://" + cleanBase;
-  }
+  // Strip trailing slash from the base URL
+  const cleanBase = baseUrl.replace(/\/$/, "");
 
   const opportunities: LinkOpportunity[] = [
     {
