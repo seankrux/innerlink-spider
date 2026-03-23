@@ -6,62 +6,73 @@ export interface LinkOpportunity {
 }
 
 /**
- * Demo function that generates sample internal link opportunities
+ * Demo function that generates sample internal link opportunities.
  * In production, this would crawl the website and analyze content
+ * to find pages that mention keywords targeted by other pages.
  */
 export function analyzeLinks(baseUrl: string): LinkOpportunity[] {
-  // Remove trailing slash and protocol for display
-  const domain = baseUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  // Normalize to get a clean base URL
+  let cleanBase = baseUrl.replace(/\/$/, "");
+  if (!cleanBase.startsWith("http://") && !cleanBase.startsWith("https://")) {
+    cleanBase = "https://" + cleanBase;
+  }
 
-  // Generate sample opportunities based on common SEO patterns
   const opportunities: LinkOpportunity[] = [
     {
-      sourceUrl: `/${domain}/blog/seo-best-practices`,
-      targetUrl: `/${domain}/services/seo-audit`,
+      sourceUrl: `${cleanBase}/blog/seo-best-practices`,
+      targetUrl: `${cleanBase}/services/seo-audit`,
       anchorText: "SEO audit services",
-      context: "...consider getting a professional SEO audit services to identify issues...",
+      context:
+        '...consider getting a professional "SEO audit services" assessment to identify technical issues on your site...',
     },
     {
-      sourceUrl: `/${domain}/blog/content-marketing-guide`,
-      targetUrl: `/${domain}/services/content-strategy`,
+      sourceUrl: `${cleanBase}/blog/content-marketing-guide`,
+      targetUrl: `${cleanBase}/services/content-strategy`,
       anchorText: "content strategy",
-      context: "...a well-planned content strategy can boost your organic traffic...",
+      context:
+        '...a well-planned "content strategy" can boost your organic traffic by 3-5x within six months...',
     },
     {
-      sourceUrl: `/${domain}/blog/keyword-research`,
-      targetUrl: `/${domain}/tools/keyword-finder`,
+      sourceUrl: `${cleanBase}/blog/keyword-research`,
+      targetUrl: `${cleanBase}/tools/keyword-finder`,
       anchorText: "keyword research tool",
-      context: "...using our free keyword research tool to find low competition keywords...",
+      context:
+        '...try using our free "keyword research tool" to find low-competition keywords in your niche...',
     },
     {
-      sourceUrl: `/${domain}/about`,
-      targetUrl: `/${domain}/case-studies`,
+      sourceUrl: `${cleanBase}/about`,
+      targetUrl: `${cleanBase}/case-studies`,
       anchorText: "client results",
-      context: "...see our client results and success stories from past projects...",
+      context:
+        '...see our "client results" and success stories from past projects across multiple industries...',
     },
     {
-      sourceUrl: `/${domain}/services/web-design`,
-      targetUrl: `/${domain}/portfolio`,
+      sourceUrl: `${cleanBase}/services/web-design`,
+      targetUrl: `${cleanBase}/portfolio`,
       anchorText: "view our portfolio",
-      context: "...check out our recent work in the view our portfolio section...",
+      context:
+        '...check out our recent work — "view our portfolio" to see responsive designs we\'ve shipped...',
     },
     {
-      sourceUrl: `/${domain}/blog/social-media-tips`,
-      targetUrl: `/${domain}/services/social-media-management`,
+      sourceUrl: `${cleanBase}/blog/social-media-tips`,
+      targetUrl: `${cleanBase}/services/social-media-management`,
       anchorText: "social media management",
-      context: "...our social media management services can help you grow...",
+      context:
+        '...our "social media management" services can help you grow engagement and followers...',
     },
     {
-      sourceUrl: `/${domain}/pricing`,
-      targetUrl: `/${domain}/contact`,
+      sourceUrl: `${cleanBase}/pricing`,
+      targetUrl: `${cleanBase}/contact`,
       anchorText: "contact us for custom pricing",
-      context: "...enterprise plans available, contact us for custom pricing...",
+      context:
+        '...enterprise plans are available — "contact us for custom pricing" tailored to your needs...',
     },
     {
-      sourceUrl: `/${domain}/blog/email-marketing`,
-      targetUrl: `/${domain}/resources/email-templates`,
+      sourceUrl: `${cleanBase}/blog/email-marketing`,
+      targetUrl: `${cleanBase}/resources/email-templates`,
       anchorText: "free email templates",
-      context: "...download our free email templates to get started...",
+      context:
+        '...download our "free email templates" to get started with high-converting campaigns...',
     },
   ];
 
