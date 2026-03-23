@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Internal Link Finder",
   description: "Find internal linking opportunities on your website",
+  authors: [{ name: "Sean G" }],
 };
 
 export default function RootLayout({

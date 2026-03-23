@@ -58,6 +58,11 @@ export default function Home() {
             <p className="text-slate-600 text-sm">Crawler respects robots.txt and crawl rate limits</p>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="text-center mt-16 py-8 text-slate-500 text-sm">
+          Made with 💛 by Sean G
+        </footer>
       </div>
     </main>
   );
