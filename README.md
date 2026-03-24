@@ -6,7 +6,6 @@
     <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
     <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a>
     <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License" />
   </p>
 
   <br />
@@ -117,10 +116,6 @@ Contributions are welcome, especially around crawl accuracy, graph analysis, UX 
 4. Validate production readiness with `npm run build`.
 5. Open a pull request with a concise summary of the problem solved and the approach taken.
 
-## License
-
-[MIT](LICENSE)
-
 ---
 
-<p align="center">Made with 💛 by Sean G</p>
+<p align="center">Made with 💛 by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></p>
